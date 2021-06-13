@@ -113,21 +113,53 @@ def gcd(a,b):
 
 # To generate keys e and d using prime numbers p and q
 def generatekey(p,q):
-	n= p*q
-	phi = (p-1)*(q-1)
-	g= 10
-	while(g!=1):
-		e= random.randrange(1,phi)
-		g= gcd(e, phi)
+    n= p*q
+    phi = (p-1)*(q-1)
+    g= 10
+    while(g!=1):
+        e= random.randrange(1,phi)
+        g= gcd(e, phi)
 
-	d= inverse(e, phi)
+    d= inverse(e, phi)
 
-	return (e, d)
+    return ((e,n), (d,n))
 
 # Calculate xor of plaintext with key as well as ciphertext with key.
 def xor(s1, s2):
  return "".join([chr(ord(c1) ^ ord(c2)) for (c1,c2) in zip(s1,s2)])
 
+def encrypt(pk, plaintext):
+    #Unpack the key into it's components
+    key, n = pk
+    #Convert each letter in the plaintext to numbers based on the character using a^b mod m
+    cipher = [(pow(ord(char),key,n)) for char in plaintext]
+    ciphertext = [str(int(char2)) for char2 in cipher]
+    print(hex(int((''.join(ciphertext)))))
+    #Return the array of bytes
+    print(hashlib.sha256(str(cipher).encode('utf-8')).hexdigest())
+    return cipher
+
+def decrypt(pk, ciphertext):
+    #Unpack the key into its components
+    key, n = pk
+    #Generate the plaintext based on the ciphertext and key using a^b mod m
+    aux = [str(pow(char, key, n)) for char in ciphertext]
+    # Return the array of bytes as a string
+    plain = [chr(int(char2)) for char2 in aux]
+    return ''.join(plain)
+
+def cipher(words,e,n): # get the words and compute the cipher
+    tam = len(words)
+    i = 0
+    lista = []
+    while(i < tam):
+        letter = words[i]
+        k = ord(letter)
+        # k = k**e
+        d = pow(k,e,n)
+        lista.append(d)
+        i += 1
+    return lista    
 
 
 
@@ -141,57 +173,16 @@ def gen_key(img):
   prime_num = prime_object.prime_numbers
   print(prime_num)
   keys = []
-  while n<11:
 
-    start_time = time.time()
-    p,q = prime_num[0],prime_num[1]
-    print(p,q)
-    public, private = generatekey(p,q)
-    A= public
-    B= private
-    print("public key:", public, "private key:", private)
-    g= random.randint(500,5000)
+  start_time = time.time()
+  p,q = prime_num[0],prime_num[1]
+  print(p,q)
+  # public, private = generatekey(p,q)
+  Key1, Key2 = generatekey(p,q)
+  print(f" Public Key: ({hex(Key1[0])},{hex(Key1[1])})")
+  print(f" Private Key: ({hex(Key2[0])},{hex(Key2[1])})")
 
-    r= prime_num[2]
-    print("shared prime ",r, "shared base ",g)
-    X= pow(g,A,r)
-    Y= pow(g,B,r)
-    print("Alice sends", X, "Bob sends", Y)
+  keys.append(Key1)
+  keys.append(Key2)
 
-    K1= pow(Y,A,r)
-    K2= pow(X,B,r)
-    Key1=hashlib.sha256(str(K1).encode('utf-8')).hexdigest()
-    Key2=hashlib.sha256(str(K2).encode('utf-8')).hexdigest()
-    keys.append(Key1)
-    keys.append(Key2)
-    '''print("Key I: ", Key1)
-    print("Key II: ", Key2)
-    message = input("enter message to be encrypted")
-    message= 'palak'
-
-    ciphertext = xor(message, Key1) 
-    print("Cipher Text " , ciphertext)
-    messagetext = xor(ciphertext, Key2) 
-    print("Message Text " ,messagetext)
-    print("--- %s seconds ---" % (time.time() - start_time))
-    print ("n: ", n)
-    x.append(n)
-    lis.append(time.time()- start_time)
-
-    times = 5
-    while(times>0):
-      e = public
-      d = private
-      print ("d = ", d)
-      hacked_d = hack_RSA(e, p*q)
-      if d == hacked_d:
-        print ("Hack WORKED!")
-      else:
-        print ("Hack FAILED")
-      print ("d = ", d, ", hacked_d = ", hacked_d)
-      print ("-------------------------")
-      times -= 1'''
-            
-
-    n= n+1
   return keys
