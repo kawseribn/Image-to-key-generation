@@ -1,6 +1,6 @@
 # image-to-key-generation
 
-Image to key generation using Prime numbers
+Image to key generation from prime numbers
 
 <!-- Read Article: [https://cankut.github.io/posts/2020-05-12-image-to-prime.html](https://cankut.github.io/posts/2020-05-12-image-to-prime.html) -->
 
