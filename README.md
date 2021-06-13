@@ -1,8 +1,8 @@
-# image-to-prime
+# image-to-key-generation
 
-Convert an image to a prime number
+Image to key generation using Prime numbers
 
-Read Article: [https://cankut.github.io/posts/2020-05-12-image-to-prime.html](https://cankut.github.io/posts/2020-05-12-image-to-prime.html)
+<!-- Read Article: [https://cankut.github.io/posts/2020-05-12-image-to-prime.html](https://cankut.github.io/posts/2020-05-12-image-to-prime.html) -->
 
 ## usage
 - use `main.py` to search for prime numbers (Searching time will depend on the resolution of the image)
@@ -50,3 +50,6 @@ f.savefig(imgFile, bbox_inches='tight')
     "Private Key": (0x525efd9affc871748e55a04a4ea36709de43586f29f57df49df6acfc772691fee9f5e13b13724582dce6b9fd62d704a2aba7152e0266be3283e4d0e733dc221d76fed76ce18d70fa077666ad025411b528f234af2b1e6f3bab9659323ba50814a123d73c25818a47e3a782a0bf852d247f3a4dbcf42079f6669e9d2147c53d83fadd1226a51e766ac065b8fdaa45603baa3542febbd543135a51bc71fd80b9ee480761dabd5d513a8a4d654561cfb220d5751323eacd35ad25b6a44632648574ae123b194fc42d35b269b1b7cd8c2ef06b756a5b95e0f66105ca90553076cc14eecd3ba1f061cd889d4a32d92182a5b,
     0xb2fa2ed02609778319a6f275585e0371fecb1b03cfc8dbbfe810bb685817c260b3a1fd47ecb300662a8f84409722336bc55bd12da17b5bf3573b0eaee5550e1e18b4be54b1ab95ced484247443c38da70889d11b006722edd2d9c3c8bbccdadc785b88d3699f69982325b5e2d82c75f89d0041a38fb331c454bbfe20a2c9eba49d43a154851cfc1c62f933eb5158f109ee5179d928d7b10f29b036204c7d4e4f6ba25f6f15e694eba53825908096ee23610dbd7b52db2434afd12a4764573d0ba237bb7aeab6250282659a6078fcc4c0418a4c93a4fd5cc835b9097ed180d62a981e4e240a279ec65af38e61f258865)
 
+### Reference
+- [https://cankut.github.io/posts/2020-05-12-image-to-prime.html](https://cankut.github.io/posts/2020-05-12-image-to-prime.html)
+- 
