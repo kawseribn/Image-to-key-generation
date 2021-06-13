@@ -5,16 +5,17 @@ Convert an image to a prime number
 Read Article: [https://cankut.github.io/posts/2020-05-12-image-to-prime.html](https://cankut.github.io/posts/2020-05-12-image-to-prime.html)
 
 ## usage
-- use `main.py` to search for a prime (you can spawn multiple processes to speed up search.)
+- use `main.py` to search for prime numbers (Searching time will depend on the resolution of the image)
 - use `json_to_image.py` to generate 1:1 size image of the number
 - use `json_to_ann.py` to generate zoomed and annotated image of the number
+- use `global_main.py` to generate the public and private key from the prime number
 
 ```python
 # SEARCH FOR PRIME
 from PrimeSearcher import PrimeSearcher
 
 ps = PrimeSearcher("./images/onez.jpg")
-ps.rescale(60*60, fit_to_original=True)
+ps.rescale(17*18, fit_to_original=True)
 ps.search(max_iterations=1000, noise_count=1, break_on_find=False)
 ```
 
